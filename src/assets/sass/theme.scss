@@ -646,7 +646,6 @@ $font-size-base: 0.9375rem; // 15 px
 // Bootstrap's .btn:focus-visible drops the outline in favour of
 // --bs-btn-focus-box-shadow, which these custom buttons do not set. Restore the
 // project's outline-based focus ring so keyboard focus stays visible.
-.ogis-routes-add,
 .ogis-cta,
 .ogis-track-card__rename,
 .ogis-track-card__remove,
