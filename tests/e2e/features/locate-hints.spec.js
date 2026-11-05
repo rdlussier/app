@@ -80,7 +80,7 @@ test.describe("Locate / Hints", () => {
       { timeout: LOCATE_TIMEOUT },
     );
 
-    // Stopping Following ends the sequence with the 3D-map tip, which stays up.
+    // Stopping follow ends the sequence with the 3D-map tip, which stays up.
     await btn.click();
     await expect(hintFor(page, "tilt")).toContainText("This map is 3D", {
       timeout: LOCATE_TIMEOUT,

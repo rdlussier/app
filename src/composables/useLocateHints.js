@@ -43,7 +43,7 @@ const MODAL_RETRY_MS = 750;
 /**
  * Map a locate mode to its hint key.
  *
- * Stopping Following (back to idle) is the last step of the sequence: the map
+ * Stopping follow (back to idle) is the last step of the sequence: the map
  * has just tilted and turned by itself, so the "tilt" tip explains how to do
  * that by hand.
  *

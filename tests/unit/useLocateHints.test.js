@@ -21,7 +21,7 @@ describe("hintKeyForMode", () => {
     expect(hintKeyForMode("error")).toBeNull();
   });
 
-  it("gives the 3D tip when Following stops", () => {
+  it("gives the 3D tip when follow stops", () => {
     expect(hintKeyForMode(null, "following")).toBe("tilt");
     expect(hintKeyForMode(null, "active")).toBe("idle");
     expect(hintKeyForMode("active", "following")).toBe("active");
@@ -69,7 +69,7 @@ describe("useLocateHints", () => {
     expect(hints.isSeen("idle")).toBe(true);
   });
 
-  it("shows the 3D tip after Following stops and keeps it up", () => {
+  it("shows the 3D tip after follow stops and keeps it up", () => {
     const hints = useLocateHints(ID);
     hints.showFor(null, { previous: "following" });
     vi.advanceTimersByTime(LOCATE_HINT_CHANGE_DELAY_MS);
