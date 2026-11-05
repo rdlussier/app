@@ -2,10 +2,10 @@
 <script setup>
 import { ref, computed, inject, onUnmounted, onMounted } from "vue";
 import { useUI } from "@/composables/useUI";
+import { askConfirm } from "@/composables/useConfirm";
 import { useActions } from "@/composables/useActions";
 import { useLocale } from "@/composables/useLocale";
 import { useOrientView } from "@/composables/useOrientView";
-import { askConfirm } from "@/composables/useConfirm";
 
 const { openPanel, isDesktop } = useUI();
 const { claimMap, dismissPanel, registerMode } = useActions();
