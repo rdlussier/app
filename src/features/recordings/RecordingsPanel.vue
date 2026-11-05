@@ -70,6 +70,8 @@ const confirmDelete = (recording) => {
 
 <template>
   <div class="ogis-recordings-panel p-3">
+    <h5 class="ogis-section-title">{{ t("menu.recordings") }}</h5>
+
     <p v-if="locationError" class="text-danger small" role="alert">
       {{ locationErrorText }}
     </p>

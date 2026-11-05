@@ -84,15 +84,11 @@ const confirmDelete = (route) => {
 </script>
 
 <template>
-  <div class="sidebar-section sidebar-section-body p-3 pb-2">
+  <div class="sidebar-section sidebar-section-body p-3 pb-0">
     <div class="ogis-routes-titlebar">
-      <h5 class="mb-0">{{ t("menu.routes") }}</h5>
-      <button
-        type="button"
-        class="btn ogis-routes-add"
-        @click="fileInput?.click()"
-      >
-        <Icon name="plus-circle" width="16" height="16" aria-hidden="true" />
+      <h5 class="ogis-section-title">{{ t("menu.routes") }}</h5>
+      <button type="button" class="btn ogis-cta" @click="fileInput?.click()">
+        <Icon name="plus-circle" width="18" height="18" aria-hidden="true" />
         {{ t("panel.routes.add") }}
       </button>
       <input
