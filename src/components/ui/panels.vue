@@ -3,6 +3,7 @@ import { computed, inject, ref, shallowRef, watch, nextTick } from "vue";
 import { useUI } from "@/composables/useUI";
 import { useLocale } from "@/composables/useLocale";
 import { getMapInstance } from "@/composables/useMap";
+import { useSwipeToClose } from "@/composables/useSwipeToClose";
 import IconButton from "@/components/ui/icon-button.vue";
 import InfoPanel from "@/components/panels/info.vue";
 
@@ -60,6 +61,10 @@ const effectivePanel = computed(() => {
   if (ids.includes(activePanel.value)) return activePanel.value;
   return ids[0] ?? null;
 });
+
+// On touch screens, swiping the panel to the left closes it.
+const panelEl = ref(null);
+useSwipeToClose(panelEl, { isOpen: isPanelVisible, close: closePanel });
 
 const panelComponents = {};
 
@@ -120,6 +125,7 @@ watch(
 
 <template>
   <div
+    ref="panelEl"
     class="offcanvas offcanvas-start ogis-panel"
     :class="{ show: isPanelVisible }"
     tabindex="-1"
