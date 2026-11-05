@@ -210,7 +210,7 @@
   "panel.offline.persistent": "Persistent",
   "panel.offline.mayBeCleared": "May be cleared",
   "panel.offline.downloadedRegions": "Downloaded Regions",
-  "panel.offline.show": "Show",
+  "panel.offline.show": "Show on map",
   "panel.offline.delete": "Delete",
   "panel.offline.rename": "Rename",
   "panel.offline.zoomRange": "z{min}–{max}",

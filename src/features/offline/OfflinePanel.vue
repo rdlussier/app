@@ -585,10 +585,6 @@ const removeRegion = async (region) => {
               · {{ region.tileCount.toLocaleString(formatLocale) }}
               {{ t("panel.offline.tiles", { count: region.tileCount }) }}
             </div>
-            <div class="ogis-track-card__meta">
-              {{ formatBytes(region.estimatedBytes) }} ·
-              {{ new Date(region.createdAt).toLocaleString(formatLocale) }}
-            </div>
           </div>
           <button
             type="button"
@@ -612,10 +608,14 @@ const removeRegion = async (region) => {
           </button>
         </div>
 
-        <div class="ogis-track-card__actions">
+        <div class="ogis-track-card__foot">
+          <div class="ogis-track-card__meta">
+            {{ formatBytes(region.estimatedBytes) }} ·
+            {{ new Date(region.createdAt).toLocaleDateString(formatLocale) }}
+          </div>
           <button
             type="button"
-            class="btn ogis-track-btn ogis-track-btn--main"
+            class="btn ogis-track-btn ogis-track-btn--pill"
             :disabled="deleting"
             @click="showSaved(region)"
           >

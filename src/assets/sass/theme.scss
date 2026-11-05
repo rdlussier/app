@@ -627,6 +627,27 @@ $font-size-base: 0.9375rem; // 15 px
   font-weight: 600;
 }
 
+// Offline cards: size and date on the left, a small quiet Show on the right.
+.ogis-track-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  .ogis-track-card__meta {
+    min-width: 0;
+  }
+
+  .ogis-track-btn--pill {
+    flex: none;
+    width: auto;
+    min-height: 2rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+}
+
 // Offline cards: rename/delete icons sit level with the map name.
 .ogis-track-card__head--top {
   align-items: flex-start;

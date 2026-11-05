@@ -210,7 +210,7 @@
   "panel.offline.mayBeCleared": "Peut être effacé",
   "panel.offline.downloadedRegions": "Régions téléchargées",
   "panel.offline.noRegions": "Aucune région téléchargée pour l'instant.",
-  "panel.offline.show": "Afficher",
+  "panel.offline.show": "Afficher sur la carte",
   "panel.offline.delete": "Supprimer",
   "panel.offline.rename": "Renommer",
   "panel.offline.zoomRange": "z{min}–{max}",

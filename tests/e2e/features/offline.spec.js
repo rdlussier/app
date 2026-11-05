@@ -363,7 +363,7 @@ test.describe("Offline / Show", () => {
     await expect(
       page
         .locator(".ogis-panel")
-        .getByRole("button", { name: "Show", exact: true }),
+        .getByRole("button", { name: "Show on map", exact: true }),
     ).toBeVisible();
 
     // The map starts at the seeded view (zoom 14 at the demo centre)
@@ -377,7 +377,7 @@ test.describe("Offline / Show", () => {
 
     await page
       .locator(".ogis-panel")
-      .getByRole("button", { name: "Show", exact: true })
+      .getByRole("button", { name: "Show on map", exact: true })
       .click();
 
     // The map navigates (fitBounds) to the region — the URL hash updates
@@ -419,7 +419,7 @@ test.describe("Offline / Show", () => {
 
     await page
       .locator(".ogis-panel")
-      .getByRole("button", { name: "Show", exact: true })
+      .getByRole("button", { name: "Show on map", exact: true })
       .click();
 
     await expect.poll(overlayFeatureCount, { timeout: 15000 }).toBe(1);
@@ -587,7 +587,7 @@ test.describe("Offline / Cross-tab sync", () => {
     await expect(page.getByText(REGION_NAME)).toBeVisible();
     await page
       .locator(".ogis-panel")
-      .getByRole("button", { name: "Show", exact: true })
+      .getByRole("button", { name: "Show on map", exact: true })
       .click();
     await expect.poll(() => overlayFeatureCount(page)).toBe(1);
 
