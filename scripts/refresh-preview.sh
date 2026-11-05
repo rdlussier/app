@@ -7,7 +7,8 @@
 # block after effectivePanel and to the vue import list); keep all of them.
 # #7 vs #8: docs/5.ui.md (keep the tilt tip text, say Follow for the chip).
 # #3/#4: theme.scss and panels.vue (keep both). PR #6 vs #2: OfflinePanel imports and window.confirm -> askConfirm (keep
-# both), and docs/10.features.md + docs/11.routes.md (take #2, then say the
+# both), #10 vs #2: theme.scss route card block (take #2, it has the same fix),
+# and docs/10.features.md + docs/11.routes.md (take #2, then say the
 # delete goes through the in-app dialog).
 set -euo pipefail
 PREVIEW=claude/project-thread-ygoeet
@@ -20,6 +21,7 @@ BRANCHES=(
   claude/map-3d-tip              # 3D tilt tip (fork PR #7)
   claude/project-thread-dgfau1   # Follow label (fork PR #8)
   claude/project-thread-xsf8eo   # Offline Maps layout (fork PR #9)
+  claude/project-thread-v7xhr7   # card buttons + tab names on phones (fork PR #10)
 )
 git fetch origin
 git fetch https://github.com/OpenGIS/app.git master   # sets FETCH_HEAD
