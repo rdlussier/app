@@ -349,7 +349,11 @@ test.describe("Offline / Delete", () => {
     await confirmDelete(page);
 
     await expect(page.getByText("Test Region")).toHaveCount(0);
-    await expect(page.getByText("No regions downloaded yet.")).toBeVisible();
+    await expect(
+      page.getByText(
+        "No saved maps yet. Draw an area above to save it for use without a signal.",
+      ),
+    ).toBeVisible();
   });
 });
 

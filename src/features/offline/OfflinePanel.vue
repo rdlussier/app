@@ -337,7 +337,7 @@ const runDownload = async () => {
     if (err.name === "AbortError") {
       downloadError.value = t("panel.offline.cancelled");
     } else if (err.code === "download-empty") {
-      downloadError.value = t("panel.offline.empty");
+      downloadError.value = t("panel.offline.downloadEmpty");
     } else if (err.code === "map-not-ready") {
       downloadError.value = t("panel.offline.errorMapNotReady");
     } else {

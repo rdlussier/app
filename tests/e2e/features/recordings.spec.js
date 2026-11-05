@@ -645,7 +645,7 @@ test.describe("Recordings / Saved list management", () => {
 
     await expect.poll(() => messages.length).toBe(1);
     await expect(page.locator(".ogis-track-card")).toHaveCount(0);
-    await expect(page.getByText("No recordings yet.")).toBeVisible();
+    await expect(page.getByText("Nothing here yet.")).toBeVisible();
     await expect
       .poll(() => mapFeatureIds(page, "recordings-saved-"))
       .toEqual([]);
@@ -946,7 +946,7 @@ test.describe("Recordings / Cross-tab sync", () => {
     await writeStoredEnvelope(peer, "ogis_recordings_app", 2, { saved: [] });
 
     await expect(row).toHaveCount(0);
-    await expect(page.getByText("No recordings yet.")).toBeVisible();
+    await expect(page.getByText("Nothing here yet.")).toBeVisible();
     await expect
       .poll(() => mapFeatureIds(page, "recordings-saved-"))
       .toEqual([]);
