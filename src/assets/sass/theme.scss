@@ -738,6 +738,20 @@ $font-size-base: 0.9375rem; // 15 px
   --bs-btn-active-bg: var(--ogis-trail-soft);
 }
 
+// Show: a soft green tint so it is not mistaken for the solid green button at
+// the top of the tab. Once the item is on the map it gets a stronger tint.
+.ogis-track-btn--show {
+  --bs-btn-color: var(--ogis-trail-soft-ink);
+  --bs-btn-bg: var(--ogis-trail-soft);
+  --bs-btn-active-color: var(--ogis-trail-soft-ink);
+  --bs-btn-active-bg: var(--ogis-trail-soft);
+}
+
+.ogis-track-card__actions .ogis-track-btn--on {
+  --bs-btn-bg: color-mix(in srgb, var(--ogis-trail) 28%, transparent);
+  --bs-btn-active-bg: color-mix(in srgb, var(--ogis-trail) 28%, transparent);
+}
+
 // Bootstrap's .btn:focus-visible drops the outline in favour of
 // --bs-btn-focus-box-shadow, which these custom buttons do not set. Restore the
 // project's outline-based focus ring so keyboard focus stays visible.

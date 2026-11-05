@@ -213,7 +213,7 @@ const confirmDelete = async (recording) => {
             type="button"
             class="btn ogis-track-btn"
             :class="
-              isVisible(rec.id) ? 'ogis-track-btn--on' : 'ogis-track-btn--main'
+              isVisible(rec.id) ? 'ogis-track-btn--on' : 'ogis-track-btn--show'
             "
             :aria-pressed="isVisible(rec.id)"
             :title="

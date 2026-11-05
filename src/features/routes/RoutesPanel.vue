@@ -168,7 +168,7 @@ const confirmDelete = async (route) => {
           type="button"
           class="btn ogis-track-btn"
           :class="
-            isVisible(route.id) ? 'ogis-track-btn--on' : 'ogis-track-btn--main'
+            isVisible(route.id) ? 'ogis-track-btn--on' : 'ogis-track-btn--show'
           "
           :aria-pressed="isVisible(route.id)"
           :title="isVisible(route.id) ? t('panel.routes.hideHint') : undefined"
