@@ -633,18 +633,13 @@ const removeRegion = async (region) => {
     <!-- Storage summary -->
     <h6 class="ogis-section-heading mt-3">{{ t("panel.offline.storage") }}</h6>
     <div class="ogis-live-card mb-3">
-      <div class="small ogis-track-card__meta d-flex justify-content-between">
-        <span>{{
+      <div class="small ogis-track-card__meta">
+        {{
           t("panel.offline.storageUsed", {
             usage: formatBytes(storageInfo.usage),
             quota: formatBytes(storageInfo.quota),
           })
-        }}</span>
-        <span>{{
-          storageInfo.persisted
-            ? t("panel.offline.persistent")
-            : t("panel.offline.mayBeCleared")
-        }}</span>
+        }}
       </div>
       <div class="progress" style="height: 6px">
         <div
@@ -656,6 +651,9 @@ const removeRegion = async (region) => {
           aria-valuemax="100"
         ></div>
       </div>
+      <p v-if="regions.length && !storageInfo.persisted" class="ogis-hint">
+        {{ t("panel.offline.mayBeCleared") }}
+      </p>
     </div>
   </div>
 </template>
