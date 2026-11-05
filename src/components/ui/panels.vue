@@ -1,8 +1,18 @@
 <script setup>
-import { computed, inject, ref, shallowRef, watch, nextTick } from "vue";
+import {
+  computed,
+  inject,
+  ref,
+  shallowRef,
+  watch,
+  nextTick,
+  onMounted,
+  onBeforeUnmount,
+} from "vue";
 import { useUI } from "@/composables/useUI";
 import { useLocale } from "@/composables/useLocale";
 import { getMapInstance } from "@/composables/useMap";
+import { useSwipeToClose } from "@/composables/useSwipeToClose";
 import IconButton from "@/components/ui/icon-button.vue";
 import InfoPanel from "@/components/panels/info.vue";
 
@@ -60,6 +70,36 @@ const effectivePanel = computed(() => {
   if (ids.includes(activePanel.value)) return activePanel.value;
   return ids[0] ?? null;
 });
+
+// Which pane to render. While the panel slides out, `isInfoVisible` is
+// already false, so keep showing the pane that was open until the slide-out
+// (0.25s, $offcanvas-transition-duration) has finished, then fall back to the
+// menu as before.
+const showInfo = ref(isInfoVisible.value);
+let closeTimer = null;
+watch([isPanelVisible, isInfoVisible], ([open, info]) => {
+  clearTimeout(closeTimer);
+  if (open) {
+    showInfo.value = info;
+  } else {
+    closeTimer = setTimeout(() => (showInfo.value = false), 300);
+  }
+});
+onBeforeUnmount(() => clearTimeout(closeTimer));
+
+// Escape closes the side panel, unless a modal is open or has just handled
+// the key (the modal closes first).
+const onKeydown = (e) => {
+  if (e.key !== "Escape" || e.defaultPrevented || !isPanelVisible.value) return;
+  if (document.querySelector(".ogis-modal")) return;
+  closePanel();
+};
+onMounted(() => window.addEventListener("keydown", onKeydown));
+onBeforeUnmount(() => window.removeEventListener("keydown", onKeydown));
+
+// On touch screens, swiping the panel to the left closes it.
+const panelEl = ref(null);
+useSwipeToClose(panelEl, { isOpen: isPanelVisible, close: closePanel });
 
 const panelComponents = {};
 
@@ -120,6 +160,7 @@ watch(
 
 <template>
   <div
+    ref="panelEl"
     class="offcanvas offcanvas-start ogis-panel"
     :class="{ show: isPanelVisible }"
     tabindex="-1"
@@ -134,7 +175,7 @@ watch(
            the tabbed feature panels stay mounted while the pane is closed
            (offcanvas `show` class handles visibility). Switching to Info still
            unmounts them. -->
-      <div v-if="!isInfoVisible" class="panel-nav border-bottom bg-body">
+      <div v-if="!showInfo" class="panel-nav border-bottom bg-body">
         <template v-for="tab in tabs" :key="tab.id">
           <IconButton
             :id="tab.btnId"
@@ -151,7 +192,7 @@ watch(
       <!-- Pane Content -->
       <div class="flex-grow-1 overflow-auto">
         <!-- Info Pane: rendered directly, without the tab strip -->
-        <InfoPanel v-if="isInfoVisible" />
+        <InfoPanel v-if="showInfo" />
 
         <!-- Menu Pane: active tab content -->
         <template v-else>
@@ -168,9 +209,11 @@ watch(
   </div>
 
   <!-- Backdrop for mobile -->
-  <div
-    v-if="isPanelVisible && !isDesktop"
-    class="offcanvas-backdrop fade show"
-    @click="closePanel()"
-  ></div>
+  <Transition name="ogis-fade">
+    <div
+      v-if="isPanelVisible && !isDesktop"
+      class="offcanvas-backdrop fade show"
+      @click="closePanel()"
+    ></div>
+  </Transition>
 </template>
