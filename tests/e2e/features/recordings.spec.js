@@ -15,6 +15,7 @@ import {
   openPeerPage,
 } from "../helpers/storage.js";
 import { DEMO } from "../../fixtures/demo.mjs";
+import { AFTER_CLOSE } from "../helpers/motion.js";
 
 /**
  * E2E tests for src/features/recordings/
@@ -108,7 +109,7 @@ const answerConfirm = async (page, action, messages) => {
       exact: true,
     })
     .click();
-  await expect(dialog).toHaveCount(0);
+  await expect(dialog).toHaveCount(0, AFTER_CLOSE);
 };
 
 /**
