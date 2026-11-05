@@ -258,12 +258,20 @@ const importGeoJSONFixture = async (page) => {
   });
 };
 
-/** Register a native-confirm handler and capture the message it carried. */
-const handleConfirm = (page, action, messages) => {
-  page.once("dialog", async (dialog) => {
-    messages.push(dialog.message());
-    await dialog[action]();
-  });
+/**
+ * Answer the in-app confirmation dialog that a just-clicked Delete opened,
+ * and capture its message. `action` is "accept" (Delete) or "dismiss" (Cancel).
+ */
+const answerConfirm = async (page, action, messages) => {
+  const dialog = page.locator("#ogis-confirm");
+  messages.push(await dialog.locator("#ogis-confirm-message").innerText());
+  await dialog
+    .getByRole("button", {
+      name: action === "accept" ? "Delete" : "Cancel",
+      exact: true,
+    })
+    .click();
+  await expect(dialog).toHaveCount(0);
 };
 
 // ─── Navigation fixtures ────────────────────────────────────────────────────
@@ -670,11 +678,11 @@ test.describe("Routes / Delete", () => {
     page,
   }) => {
     const messages = [];
-    handleConfirm(page, "dismiss", messages);
 
     await routeRow(page, "Test Loop")
       .getByRole("button", { name: "Remove", exact: true })
       .click();
+    await answerConfirm(page, "dismiss", messages);
 
     await expect.poll(() => messages.length).toBe(1);
     expect(messages[0]).toContain("Test Loop");
@@ -690,11 +698,11 @@ test.describe("Routes / Delete", () => {
     page,
   }) => {
     const messages = [];
-    handleConfirm(page, "accept", messages);
 
     await routeRow(page, "Test Loop")
       .getByRole("button", { name: "Remove", exact: true })
       .click();
+    await answerConfirm(page, "accept", messages);
 
     await expect.poll(() => messages.length).toBe(1);
     expect(messages[0]).toContain("Test Loop");
@@ -1048,10 +1056,10 @@ test.describe("Routes / Navigate", () => {
 
     await openRoutesPanel(page);
     const messages = [];
-    handleConfirm(page, "accept", messages);
     await routeRow(page, "Test Loop")
       .getByRole("button", { name: "Remove", exact: true })
       .click();
+    await answerConfirm(page, "accept", messages);
 
     await expect.poll(() => messages.length, { timeout: NAV_TIMEOUT }).toBe(1);
     await expect(routeRow(page, "Test Loop")).toHaveCount(0);
