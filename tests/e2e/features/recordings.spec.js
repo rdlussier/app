@@ -559,7 +559,7 @@ test.describe("Recordings / Saved list management", () => {
       row.getByRole("button", { name: "GeoJSON", exact: true }),
     ).toBeHidden();
     await expect(
-      row.getByRole("button", { name: "Remove", exact: true }),
+      row.getByRole("button", { name: "Delete", exact: true }),
     ).toBeVisible();
   });
 
@@ -610,10 +610,10 @@ test.describe("Recordings / Saved list management", () => {
 
     const messages = [];
     handleConfirm(page, "dismiss", messages);
-    await row.getByRole("button", { name: "Remove", exact: true }).click();
+    await row.getByRole("button", { name: "Delete", exact: true }).click();
 
     await expect.poll(() => messages.length).toBe(1);
-    expect(messages[0]).toContain("Remove the recording from");
+    expect(messages[0]).toContain("Delete the recording from");
     await expect(row).toBeVisible();
     await expect
       .poll(() => mapFeatureIds(page, "recordings-saved-"))
@@ -632,7 +632,7 @@ test.describe("Recordings / Saved list management", () => {
 
     const messages = [];
     handleConfirm(page, "accept", messages);
-    await row.getByRole("button", { name: "Remove", exact: true }).click();
+    await row.getByRole("button", { name: "Delete", exact: true }).click();
 
     await expect.poll(() => messages.length).toBe(1);
     await expect(page.locator(".ogis-track-card")).toHaveCount(0);

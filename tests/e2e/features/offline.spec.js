@@ -311,7 +311,7 @@ test.describe("Offline / Download", () => {
     // The region appears in the list once the download completes; give the
     // same headroom for the contended route-interception cost noted above.
     await expect
-      .poll(() => page.getByRole("button", { name: "Remove" }).count(), {
+      .poll(() => page.getByRole("button", { name: "Delete" }).count(), {
         timeout: 180000,
       })
       .toBeGreaterThan(0);
@@ -335,7 +335,7 @@ test.describe("Offline / Delete", () => {
     await expect(page.getByText("Test Region")).toBeVisible();
 
     page.on("dialog", (dialog) => dialog.accept());
-    await page.getByRole("button", { name: "Remove" }).click();
+    await page.getByRole("button", { name: "Delete" }).click();
 
     await expect(page.getByText("Test Region")).toHaveCount(0);
     await expect(page.getByText("No regions downloaded yet.")).toBeVisible();
@@ -424,7 +424,7 @@ test.describe("Offline / Show", () => {
     page.on("dialog", (dialog) => dialog.accept());
     await page
       .locator(".ogis-panel")
-      .getByRole("button", { name: "Remove" })
+      .getByRole("button", { name: "Delete" })
       .click();
 
     await expect.poll(overlayFeatureCount, { timeout: 15000 }).toBe(0);

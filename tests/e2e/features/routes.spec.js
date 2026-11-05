@@ -673,7 +673,7 @@ test.describe("Routes / Delete", () => {
     handleConfirm(page, "dismiss", messages);
 
     await routeRow(page, "Test Loop")
-      .getByRole("button", { name: "Remove", exact: true })
+      .getByRole("button", { name: "Delete", exact: true })
       .click();
 
     await expect.poll(() => messages.length).toBe(1);
@@ -693,7 +693,7 @@ test.describe("Routes / Delete", () => {
     handleConfirm(page, "accept", messages);
 
     await routeRow(page, "Test Loop")
-      .getByRole("button", { name: "Remove", exact: true })
+      .getByRole("button", { name: "Delete", exact: true })
       .click();
 
     await expect.poll(() => messages.length).toBe(1);
@@ -1050,7 +1050,7 @@ test.describe("Routes / Navigate", () => {
     const messages = [];
     handleConfirm(page, "accept", messages);
     await routeRow(page, "Test Loop")
-      .getByRole("button", { name: "Remove", exact: true })
+      .getByRole("button", { name: "Delete", exact: true })
       .click();
 
     await expect.poll(() => messages.length, { timeout: NAV_TIMEOUT }).toBe(1);
