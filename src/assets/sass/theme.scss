@@ -994,8 +994,8 @@ $font-size-base: 0.9375rem; // 15 px
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(var(--bs-primary-rgb), 0.16);
-  color: var(--bs-primary);
+  background: rgba(var(--ogis-ui-green-rgb), 0.16);
+  color: var(--ogis-ui-green);
 
   svg {
     display: block;
@@ -1130,7 +1130,7 @@ $font-size-base: 0.9375rem; // 15 px
 [data-bs-theme="dark"]
   .ogis-nav-control[data-variant="card"]
   .ogis-nav-control__icon {
-  background: rgba(var(--bs-primary-rgb), 0.22);
+  background: rgba(var(--ogis-ui-green-rgb), 0.22);
 }
 
 [data-bs-theme="dark"]
@@ -1191,7 +1191,7 @@ $font-size-base: 0.9375rem; // 15 px
   }
 
   &[aria-pressed="true"] {
-    color: var(--bs-primary);
+    color: var(--ogis-ui-green);
     background: rgba(255, 255, 255, 0.92);
   }
 }
@@ -1256,6 +1256,41 @@ $font-size-base: 0.9375rem; // 15 px
 
 .ogis-modal {
   z-index: 1070;
+}
+
+// Everything outside the locate/follow button uses the deeper green.
+// The bright app green stays on the locate marker and button only.
+:root {
+  --ogis-ui-green: #2f6b3a;
+  --ogis-ui-green-rgb: 47, 107, 58;
+  --ogis-ui-green-ink: #ffffff;
+}
+
+[data-bs-theme="dark"] {
+  --ogis-ui-green: #5fae6c;
+  --ogis-ui-green-rgb: 95, 174, 108;
+  --ogis-ui-green-ink: #0c1a0f;
+}
+
+.ogis-modal,
+.ogis-map-status {
+  --bs-primary: var(--ogis-ui-green);
+  --bs-primary-rgb: var(--ogis-ui-green-rgb);
+  --bs-link-color: var(--ogis-ui-green);
+  --bs-link-color-rgb: var(--ogis-ui-green-rgb);
+
+  .btn-primary {
+    --bs-btn-color: var(--ogis-ui-green-ink);
+    --bs-btn-bg: var(--ogis-ui-green);
+    --bs-btn-border-color: var(--ogis-ui-green);
+    --bs-btn-hover-color: var(--ogis-ui-green-ink);
+    --bs-btn-hover-bg: var(--ogis-ui-green);
+    --bs-btn-hover-border-color: var(--ogis-ui-green);
+    --bs-btn-active-color: var(--ogis-ui-green-ink);
+    --bs-btn-active-bg: var(--ogis-ui-green);
+    --bs-btn-active-border-color: var(--ogis-ui-green);
+    --bs-btn-focus-shadow-rgb: var(--ogis-ui-green-rgb);
+  }
 }
 
 // #6h  Attribution chip, disclosures & scale offset
@@ -1328,7 +1363,7 @@ $font-size-base: 0.9375rem; // 15 px
 
 // Info panel attribution links — interactive here, unlike the chip.
 .ogis-attribution-section a {
-  color: var(--bs-primary);
+  color: var(--ogis-ui-green);
 }
 
 // Compact, expandable trust bar. Native <details> supplies the keyboard and
