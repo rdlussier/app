@@ -8,6 +8,7 @@ import { useOrientView } from "@/composables/useOrientView";
 import { useInlineRename } from "@/composables/useInlineRename.js";
 import Icon from "@/components/ui/icon.vue";
 import RenameInput from "@/components/ui/rename-input.vue";
+import { askConfirm } from "@/composables/useConfirm";
 
 const { openPanel, isDesktop } = useUI();
 const { claimMap, dismissPanel, registerMode } = useActions();
@@ -362,7 +363,7 @@ const deleting = ref(false);
 const deleteError = ref("");
 
 const removeRegion = async (region) => {
-  const ok = window.confirm(
+  const ok = await askConfirm(
     t("panel.offline.confirmDelete", { name: region.name }),
   );
   if (!ok) return;

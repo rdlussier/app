@@ -10,6 +10,13 @@ import { writeStoredEnvelope, openPeerPage } from "../helpers/storage.js";
 import { DEMO } from "../../fixtures/demo.mjs";
 import { AFTER_CLOSE } from "../helpers/motion.js";
 
+/** Accept the in-app delete confirmation dialog. */
+const confirmDelete = (page) =>
+  page
+    .locator("#ogis-confirm")
+    .getByRole("button", { name: "Delete", exact: true })
+    .click();
+
 /**
  * E2E tests for src/features/offline/
  *
@@ -335,8 +342,8 @@ test.describe("Offline / Delete", () => {
   }) => {
     await expect(page.getByText("Test Region")).toBeVisible();
 
-    page.on("dialog", (dialog) => dialog.accept());
     await page.getByRole("button", { name: "Delete" }).click();
+    await confirmDelete(page);
 
     await expect(page.getByText("Test Region")).toHaveCount(0);
     await expect(page.getByText("No regions downloaded yet.")).toBeVisible();
@@ -422,11 +429,11 @@ test.describe("Offline / Show", () => {
 
     await expect.poll(overlayFeatureCount, { timeout: 15000 }).toBe(1);
 
-    page.on("dialog", (dialog) => dialog.accept());
     await page
       .locator(".ogis-panel")
       .getByRole("button", { name: "Delete" })
       .click();
+    await confirmDelete(page);
 
     await expect.poll(overlayFeatureCount, { timeout: 15000 }).toBe(0);
   });
