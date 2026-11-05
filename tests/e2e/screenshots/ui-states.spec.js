@@ -1346,7 +1346,7 @@ test.describe("Secondary UI states — desktop landscape", () => {
     // Idle — no active ride and no saved recordings.
     await openPanelTab(page, { name: "Recordings", exact: true });
     await expect(
-      page.locator(".ogis-panel").getByText("No recordings yet."),
+      page.locator(".ogis-panel").getByText("Nothing here yet."),
     ).toBeVisible();
     await normaliseCaptureState(page, testInfo);
     await capture(page, FEATURE_DIR, "record-idle");
