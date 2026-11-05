@@ -587,6 +587,56 @@ $font-size-base: 0.9375rem; // 15 px
   text-decoration: none;
 }
 
+// Offline Maps: zoom range on one tight row.
+.ogis-zoom-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ogis-zoom-row__title {
+  flex: 1;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.ogis-zoom-row__field {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ogis-route-muted);
+
+  .form-control {
+    width: 3.2rem;
+  }
+}
+
+// Small confirmation after a map finishes saving.
+.ogis-saved-note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.65rem;
+  background: var(--ogis-track-btn-bg);
+  color: var(--ogis-track-btn-ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+// Offline cards: rename/delete icons sit level with the map name.
+.ogis-track-card__head--top {
+  align-items: flex-start;
+
+  .ogis-track-card__rename,
+  .ogis-track-card__remove {
+    margin-block: -0.5rem;
+  }
+}
+
 .ogis-offline-label {
   color: var(--bs-body-color);
 }

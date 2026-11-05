@@ -179,9 +179,6 @@ test.describe("Offline / Panel tab", () => {
     await expect(page.locator("#offline-minzoom")).toBeVisible();
     await expect(page.locator("#offline-maxzoom")).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "Estimate size" }),
-    ).toBeVisible();
-    await expect(
       page.getByRole("button", { name: "Download region" }),
     ).toBeVisible();
     await expect(
@@ -216,10 +213,8 @@ test.describe("Offline / Estimate", () => {
     // Selected region bounds are shown
     await expect(page.getByText("Selected region")).toBeVisible();
 
-    await page.getByRole("button", { name: "Estimate size" }).click();
-
-    await expect(page.getByText("Tiles", { exact: true })).toBeVisible();
-    await expect(page.getByText("Est. size")).toBeVisible();
+    // The size appears by itself once an area is chosen.
+    await expect(page.getByText("Estimated size")).toBeVisible();
   });
 });
 
@@ -300,8 +295,7 @@ test.describe("Offline / Download", () => {
 
     await page.getByRole("button", { name: "Select region" }).click();
     await drawRegion(page);
-    await page.getByRole("button", { name: "Estimate size" }).click();
-    await expect(page.getByText("Est. size")).toBeVisible();
+    await expect(page.getByText("Estimated size")).toBeVisible();
 
     await page.getByRole("button", { name: "Download region" }).click();
 
@@ -316,6 +310,15 @@ test.describe("Offline / Download", () => {
       })
       .toBeGreaterThan(0);
     await expect(page.getByText("Region 1")).toBeVisible();
+    // A short message (saved, or a warning if tiles were missing), and the
+    // selection is clear for the next map.
+    await expect(
+      page.locator(".ogis-offline-panel [role=status]"),
+    ).toBeVisible();
+    await expect(page.getByText("Selected region")).toHaveCount(0);
+    await expect(
+      page.getByRole("button", { name: "Download region" }),
+    ).toBeDisabled();
   });
 });
 
