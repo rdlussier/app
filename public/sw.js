@@ -6,7 +6,9 @@
 const SHELL_CACHE = "ogis-shell-v1";
 const MAP_CACHE = "ogis-map-v1";
 const CACHE_ALLOWLIST = [SHELL_CACHE, MAP_CACHE];
-const SHELL_URL = "/index.html";
+// Folder the worker is served from ("/" normally, "/app/" on GitHub Pages).
+const BASE = new URL("./", self.location).pathname;
+const SHELL_URL = `${BASE}index.html`;
 
 // Cross-origin hosts that serve map resources (style JSON, vector/raster
 // tiles, DEM hillshades, glyphs, sprites and TileJSON). Any path on these
@@ -40,7 +42,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(SHELL_CACHE)
-      .then((cache) => cache.addAll(["/", SHELL_URL]))
+      .then((cache) => cache.addAll([BASE, SHELL_URL]))
       .then(() => self.skipWaiting()),
   );
 });

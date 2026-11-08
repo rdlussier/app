@@ -43,7 +43,7 @@ export const setupServiceWorker = async ({
 
   if (enabled) {
     try {
-      await nav.serviceWorker.register("/sw.js");
+      await nav.serviceWorker.register(`${env.BASE_URL || "/"}sw.js`);
       summary.registered = true;
     } catch (error) {
       report(error, { source: "service-worker", phase: "register" });
