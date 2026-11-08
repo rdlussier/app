@@ -16,12 +16,12 @@ import { useLocale } from "@/composables/useLocale";
 import { useAttribution } from "@/composables/useAttribution";
 import { useWakeLock } from "@/composables/useWakeLock";
 import { mapStatusMessageKey } from "@/resilience/mapRecovery";
-import { useLook } from "@/stores/lookStore";
+import { setForcedTheme } from "@/composables/useSettings";
 
 const instanceId = inject("ogisAppId", "app");
 
-// Apply the remembered look (Normal or Matrix) before the first paint.
-useLook(instanceId);
+// Neo has no light version: pin Bootstrap to dark whatever the OS prefers.
+setForcedTheme("dark");
 
 // Keep the meta description in sync with the active locale. The static English
 // value in index.html is the no-JS default; this replaces it once the app boots.

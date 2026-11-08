@@ -46,7 +46,6 @@ const INSTANCE_NAMESPACES = [
   "recording-active",
   "sync",
   "welcome",
-  "look",
 ];
 
 /**

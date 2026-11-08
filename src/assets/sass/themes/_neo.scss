@@ -1,55 +1,57 @@
 // ============================================================
-// Matrix look  ·  src/assets/sass/looks/_matrix.scss
+// Neo theme  ·  src/assets/sass/themes/_neo.scss
 //
-// An optional look, switched on from the Info panel ("Look" card).
-// useLook (src/stores/lookStore.js) sets <html data-ogis-look="matrix">
-// and forces Bootstrap's dark theme, so everything here builds on the
-// dark-mode rules and only swaps colours, fonts and a few flourishes.
+// A showcase for the Themeability discussion
+// (https://github.com/orgs/OpenGIS/discussions/5): always dark,
+// bright green text, a nod to The Matrix. <html data-ogis-theme="neo">
+// (index.html) turns it on and src/App.vue pins Bootstrap's dark theme,
+// so everything here builds on the dark-mode rules and only swaps
+// colours, fonts and a few flourishes.
 //
 // Black surfaces, glowing green monospace text, square corners and
-// falling code behind the side panel (components/ui/matrix-rain.vue).
+// falling code behind the side panel (components/ui/neo-rain.vue).
 //
 // The map is deliberately left alone: no rule here targets the map
 // canvas, its layers or the navigation connector drawn over it.
 // ============================================================
 
-$mx-bright: #00ff41; // phosphor green: text, active states, glow
-$mx-mid: #00c032; // secondary text
-$mx-dim: #008f11; // muted text and borders
-$mx-deep: #0b3d14; // quiet borders
-$mx-pale: #d6ffdc; // names and headings
-$mx-glow: rgba(0, 255, 65, 0.55);
-$mx-font:
+$neo-bright: #00ff41; // phosphor green: text, active states, glow
+$neo-mid: #00c032; // secondary text
+$neo-dim: #008f11; // muted text and borders
+$neo-deep: #0b3d14; // quiet borders
+$neo-pale: #d6ffdc; // names and headings
+$neo-glow: rgba(0, 255, 65, 0.55);
+$neo-font:
   ui-monospace, "SFMono-Regular", "Cascadia Mono", "Roboto Mono", Menlo,
   Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace;
 
-[data-ogis-look="matrix"] {
-  --ogis-mx-bright: #{$mx-bright};
-  --ogis-mx-dim: #{$mx-dim};
+[data-ogis-theme="neo"] {
+  --ogis-neo-bright: #{$neo-bright};
+  --ogis-neo-dim: #{$neo-dim};
 
   // Bootstrap tokens used by modals, forms and links outside the panel.
   --bs-body-bg: #000;
-  --bs-body-color: #{$mx-bright};
-  --bs-secondary-color: #{$mx-dim};
-  --bs-tertiary-color: #{$mx-dim};
-  --bs-emphasis-color: #{$mx-pale};
-  --bs-border-color: #{$mx-deep};
-  --bs-link-color: #{$mx-bright};
+  --bs-body-color: #{$neo-bright};
+  --bs-secondary-color: #{$neo-dim};
+  --bs-tertiary-color: #{$neo-dim};
+  --bs-emphasis-color: #{$neo-pale};
+  --bs-border-color: #{$neo-deep};
+  --bs-link-color: #{$neo-bright};
   --bs-link-color-rgb: 0, 255, 65;
-  --bs-primary: #{$mx-bright};
+  --bs-primary: #{$neo-bright};
   --bs-primary-rgb: 0, 255, 65;
-  --bs-body-font-family: #{$mx-font};
-  --ogis-ui-green: #{$mx-bright};
+  --bs-body-font-family: #{$neo-font};
+  --ogis-ui-green: #{$neo-bright};
   --ogis-ui-green-rgb: 0, 255, 65;
   --ogis-ui-green-ink: #001a00;
-  --ogis-privacy-accent: #{$mx-bright};
+  --ogis-privacy-accent: #{$neo-bright};
 
   body {
-    font-family: $mx-font;
+    font-family: $neo-font;
   }
 
   ::selection {
-    background: $mx-bright;
+    background: $neo-bright;
     color: #001a00;
   }
 
@@ -57,30 +59,30 @@ $mx-font:
 
   .offcanvas.ogis-panel {
     --bs-offcanvas-bg: rgba(0, 6, 0, 0.94);
-    --ogis-panel-green: #{$mx-bright};
+    --ogis-panel-green: #{$neo-bright};
     --ogis-panel-green-ink: #001a00;
-    --bs-primary: #{$mx-bright};
+    --bs-primary: #{$neo-bright};
     --bs-primary-rgb: 0, 255, 65;
-    --bs-success: #{$mx-bright};
+    --bs-success: #{$neo-bright};
     --bs-success-rgb: 0, 255, 65;
-    --bs-link-color: #{$mx-bright};
+    --bs-link-color: #{$neo-bright};
     --bs-link-color-rgb: 0, 255, 65;
-    --bs-link-hover-color: #{$mx-pale};
+    --bs-link-hover-color: #{$neo-pale};
     --bs-link-hover-color-rgb: 214, 255, 220;
-    color: $mx-bright;
-    font-family: $mx-font;
+    color: $neo-bright;
+    font-family: $neo-font;
     // Nearly opaque here, so the blur adds GPU work (costly on iPhones)
     // without changing what you see.
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-right: 1px solid $mx-dim !important;
+    border-right: 1px solid $neo-dim !important;
     box-shadow:
       0 0 24px rgba(0, 255, 65, 0.3),
       inset -1px 0 0 rgba(0, 255, 65, 0.35);
   }
 
   // The rain canvas sits under the panel content.
-  .ogis-matrix-rain {
+  .ogis-neo-rain {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -101,38 +103,38 @@ $mx-font:
   .ogis-recordings-panel,
   .ogis-offline-panel,
   .ogis-info-panel {
-    --ogis-trail: #{$mx-bright};
+    --ogis-trail: #{$neo-bright};
     --ogis-trail-ink: #001a00;
     --ogis-trail-soft: rgba(0, 255, 65, 0.12);
-    --ogis-trail-soft-ink: #{$mx-bright};
+    --ogis-trail-soft-ink: #{$neo-bright};
     --ogis-track-card-bg: rgba(0, 14, 0, 0.9);
     --ogis-track-btn-bg: rgba(0, 0, 0, 0.6);
-    --ogis-track-btn-ink: #{$mx-bright};
-    --ogis-route-muted: #{$mx-dim};
+    --ogis-track-btn-ink: #{$neo-bright};
+    --ogis-route-muted: #{$neo-dim};
   }
 
   // Tab strip
   .panel-nav {
     background: rgba(0, 0, 0, 0.88) !important;
-    border-bottom: 1px solid $mx-dim !important;
+    border-bottom: 1px solid $neo-dim !important;
   }
 
   .panel-nav .icon-btn {
-    color: $mx-dim;
+    color: $neo-dim;
   }
 
   .panel-nav .icon-btn[aria-pressed="true"] {
-    color: $mx-bright;
-    text-shadow: 0 0 8px $mx-bright;
-    filter: drop-shadow(0 0 5px $mx-glow);
+    color: $neo-bright;
+    text-shadow: 0 0 8px $neo-bright;
+    filter: drop-shadow(0 0 5px $neo-glow);
   }
 
   // Titles: a prompt in front and a cursor after, in every language.
   .ogis-section-title {
-    color: $mx-bright;
+    color: $neo-bright;
     letter-spacing: 0.06em;
     text-shadow:
-      0 0 6px $mx-bright,
+      0 0 6px $neo-bright,
       0 0 18px rgba(0, 255, 65, 0.45);
 
     // The "/ ''" alt text keeps screen readers (VoiceOver) from reading the
@@ -140,7 +142,7 @@ $mx-font:
     &::before {
       content: "> ";
       content: "> " / "";
-      color: $mx-mid;
+      color: $neo-mid;
     }
 
     &::after {
@@ -151,25 +153,24 @@ $mx-font:
   }
 
   .ogis-section-heading,
-  .ogis-map3d-card__title,
-  .ogis-look-card__title {
-    color: $mx-pale;
+  .ogis-map3d-card__title {
+    color: $neo-pale;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
   // Full-width calls to action: an outlined, glowing terminal button.
   .ogis-cta {
-    --bs-btn-color: #{$mx-bright};
+    --bs-btn-color: #{$neo-bright};
     --bs-btn-bg: transparent;
-    --bs-btn-border-color: #{$mx-bright};
+    --bs-btn-border-color: #{$neo-bright};
     --bs-btn-active-color: #001a00;
-    --bs-btn-active-bg: #{$mx-bright};
-    --bs-btn-active-border-color: #{$mx-bright};
+    --bs-btn-active-bg: #{$neo-bright};
+    --bs-btn-active-border-color: #{$neo-bright};
     border-radius: 2px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    text-shadow: 0 0 6px $mx-bright;
+    text-shadow: 0 0 6px $neo-bright;
     box-shadow:
       0 0 10px rgba(0, 255, 65, 0.45),
       inset 0 0 12px rgba(0, 255, 65, 0.2);
@@ -187,15 +188,15 @@ $mx-font:
   // Cards: square, with a bright edge on the left.
   .ogis-track-card,
   .ogis-live-card {
-    border: 1px solid $mx-deep;
-    border-left: 3px solid $mx-bright;
+    border: 1px solid $neo-deep;
+    border-left: 3px solid $neo-bright;
     border-radius: 2px;
     box-shadow: 0 0 14px rgba(0, 255, 65, 0.1);
-    color: $mx-bright;
+    color: $neo-bright;
   }
 
   .ogis-track-name {
-    color: $mx-pale;
+    color: $neo-pale;
     text-shadow: 0 0 6px rgba(0, 255, 65, 0.9);
   }
 
@@ -203,7 +204,7 @@ $mx-font:
   .ogis-hint,
   .text-body-tertiary,
   .text-muted {
-    color: $mx-dim !important;
+    color: $neo-dim !important;
   }
 
   // English only: a terminal-style prefix on route distances.
@@ -221,22 +222,22 @@ $mx-font:
 
   .ogis-track-card__rename,
   .ogis-track-card__remove {
-    --bs-btn-color: #{$mx-mid};
+    --bs-btn-color: #{$neo-mid};
     border-radius: 2px;
   }
 
   // Card buttons
   .ogis-track-btn,
   .ogis-share-menu > summary {
-    --bs-btn-color: #{$mx-bright};
+    --bs-btn-color: #{$neo-bright};
     --bs-btn-bg: rgba(0, 0, 0, 0.6);
-    --bs-btn-border-color: #{$mx-deep};
+    --bs-btn-border-color: #{$neo-deep};
     --bs-btn-active-color: #001a00;
-    --bs-btn-active-bg: #{$mx-bright};
-    --bs-btn-active-border-color: #{$mx-bright};
-    --bs-btn-disabled-color: #{$mx-deep};
+    --bs-btn-active-bg: #{$neo-bright};
+    --bs-btn-active-border-color: #{$neo-bright};
+    --bs-btn-disabled-color: #{$neo-deep};
     --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #{$mx-deep};
+    --bs-btn-disabled-border-color: #{$neo-deep};
     border-radius: 2px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -249,33 +250,33 @@ $mx-font:
   }
 
   .ogis-track-btn--show {
-    --bs-btn-border-color: #{$mx-dim};
+    --bs-btn-border-color: #{$neo-dim};
   }
 
   .ogis-track-btn--main,
   .ogis-track-btn--on,
   .ogis-track-card__actions .ogis-track-btn--on {
     --bs-btn-color: #001a00;
-    --bs-btn-bg: #{$mx-bright};
-    --bs-btn-border-color: #{$mx-bright};
+    --bs-btn-bg: #{$neo-bright};
+    --bs-btn-border-color: #{$neo-bright};
     --bs-btn-active-color: #001a00;
-    --bs-btn-active-bg: #{$mx-bright};
+    --bs-btn-active-bg: #{$neo-bright};
     box-shadow: 0 0 14px rgba(0, 255, 65, 0.6);
   }
 
   .ogis-share-menu__items {
     background: #000;
-    border: 1px solid $mx-dim;
+    border: 1px solid $neo-dim;
     border-radius: 2px;
     box-shadow: 0 0 14px rgba(0, 255, 65, 0.35);
   }
 
   .ogis-panel .btn-outline-secondary {
-    --bs-btn-color: #{$mx-bright};
-    --bs-btn-border-color: #{$mx-deep};
+    --bs-btn-color: #{$neo-bright};
+    --bs-btn-border-color: #{$neo-deep};
     --bs-btn-active-color: #001a00;
-    --bs-btn-active-bg: #{$mx-bright};
-    --bs-btn-active-border-color: #{$mx-bright};
+    --bs-btn-active-bg: #{$neo-bright};
+    --bs-btn-active-border-color: #{$neo-bright};
     border-radius: 2px;
   }
 
@@ -284,29 +285,29 @@ $mx-font:
   .form-select,
   .ogis-rename-input {
     background-color: #000;
-    color: $mx-bright;
-    border-color: $mx-dim;
+    color: $neo-bright;
+    border-color: $neo-dim;
     border-radius: 2px;
-    font-family: $mx-font;
+    font-family: $neo-font;
 
     &:focus {
-      border-color: $mx-bright;
+      border-color: $neo-bright;
       box-shadow: 0 0 0 0.2rem rgba(0, 255, 65, 0.25);
     }
   }
 
   .form-range {
-    accent-color: $mx-bright;
+    accent-color: $neo-bright;
   }
 
   .progress {
-    background: $mx-deep;
+    background: $neo-deep;
     border-radius: 0;
   }
 
   .progress-bar {
-    background: $mx-bright;
-    box-shadow: 0 0 8px $mx-glow;
+    background: $neo-bright;
+    box-shadow: 0 0 8px $neo-glow;
   }
 
   .badge {
@@ -322,7 +323,7 @@ $mx-font:
 
   .ogis-zoom-row__title {
     flex-basis: 100%;
-    color: $mx-pale;
+    color: $neo-pale;
   }
 
   // Small phones (iPhone SE and similar): drop the extra letter spacing so
@@ -339,16 +340,16 @@ $mx-font:
   // Info panel
   .ogis-info-footer {
     background: rgba(0, 6, 0, 0.94);
-    border-top-color: $mx-dim !important;
+    border-top-color: $neo-dim !important;
   }
 
   .sidebar-section.border-top,
   .sidebar-section.border-bottom {
-    border-color: $mx-deep !important;
+    border-color: $neo-deep !important;
   }
 
   .ogis-about-section .lead {
-    color: $mx-pale;
+    color: $neo-pale;
   }
 
   .ogis-about-logo {
@@ -356,33 +357,33 @@ $mx-font:
   }
 
   .ogis-map3d-card__icon {
-    color: $mx-bright;
-    filter: drop-shadow(0 0 4px $mx-glow);
+    color: $neo-bright;
+    filter: drop-shadow(0 0 4px $neo-glow);
   }
 
   // ── Pop-ups ─────────────────────────────────────────────────
 
   .ogis-modal .modal-content {
     background: rgba(0, 8, 0, 0.96);
-    color: $mx-bright;
-    border: 1px solid $mx-bright;
+    color: $neo-bright;
+    border: 1px solid $neo-bright;
     border-radius: 2px;
     box-shadow:
       0 0 30px rgba(0, 255, 65, 0.35),
       inset 0 0 20px rgba(0, 255, 65, 0.08);
-    font-family: $mx-font;
+    font-family: $neo-font;
   }
 
   .ogis-modal .modal-title,
   .ogis-modal h5,
   .ogis-modal h6 {
-    color: $mx-pale;
-    text-shadow: 0 0 6px $mx-glow;
+    color: $neo-pale;
+    text-shadow: 0 0 6px $neo-glow;
   }
 
   .ogis-modal .modal-header,
   .ogis-modal .modal-footer {
-    border-color: $mx-deep;
+    border-color: $neo-deep;
   }
 
   .ogis-modal .btn {
@@ -394,11 +395,11 @@ $mx-font:
   .ogis-modal .btn-primary,
   .ogis-modal .btn-success {
     --bs-btn-color: #001a00;
-    --bs-btn-bg: #{$mx-bright};
-    --bs-btn-border-color: #{$mx-bright};
+    --bs-btn-bg: #{$neo-bright};
+    --bs-btn-border-color: #{$neo-bright};
     --bs-btn-active-color: #001a00;
-    --bs-btn-active-bg: #{$mx-bright};
-    --bs-btn-active-border-color: #{$mx-bright};
+    --bs-btn-active-bg: #{$neo-bright};
+    --bs-btn-active-border-color: #{$neo-bright};
   }
 
   .ogis-modal .btn-danger {
@@ -413,12 +414,12 @@ $mx-font:
   .ogis-modal .btn-secondary,
   .ogis-modal .btn-outline-secondary,
   .ogis-modal .btn-light {
-    --bs-btn-color: #{$mx-bright};
+    --bs-btn-color: #{$neo-bright};
     --bs-btn-bg: transparent;
-    --bs-btn-border-color: #{$mx-dim};
+    --bs-btn-border-color: #{$neo-dim};
     --bs-btn-active-color: #001a00;
-    --bs-btn-active-bg: #{$mx-bright};
-    --bs-btn-active-border-color: #{$mx-bright};
+    --bs-btn-active-bg: #{$neo-bright};
+    --bs-btn-active-border-color: #{$neo-bright};
   }
 
   .btn-close {
@@ -429,68 +430,68 @@ $mx-font:
 
   .icon-btn--chip {
     background: rgba(0, 0, 0, 0.82);
-    color: $mx-bright;
-    border: 1px solid $mx-dim;
+    color: $neo-bright;
+    border: 1px solid $neo-dim;
     box-shadow: 0 0 10px rgba(0, 255, 65, 0.35);
-    font-family: $mx-font;
+    font-family: $neo-font;
 
     &[aria-pressed="true"] {
       background: rgba(0, 30, 0, 0.9);
-      border-color: $mx-bright;
+      border-color: $neo-bright;
       box-shadow: 0 0 16px rgba(0, 255, 65, 0.6);
     }
   }
 
   .ogis-attribution-chip a {
-    color: $mx-bright;
+    color: $neo-bright;
   }
 
   .maplibregl-ctrl-scale {
     background-color: rgba(0, 0, 0, 0.82);
-    border-color: $mx-bright;
-    color: $mx-bright;
-    font-family: $mx-font;
+    border-color: $neo-bright;
+    color: $neo-bright;
+    font-family: $neo-font;
   }
 
   // Guide me box
   .ogis-nav-control {
     background: rgba(0, 0, 0, 0.88);
-    color: $mx-bright;
-    border: 1px solid $mx-bright;
+    color: $neo-bright;
+    border: 1px solid $neo-bright;
     border-radius: 2px;
     box-shadow: 0 0 16px rgba(0, 255, 65, 0.45);
-    font-family: $mx-font;
+    font-family: $neo-font;
   }
 
   .ogis-nav-control__value {
-    color: $mx-pale;
-    text-shadow: 0 0 6px $mx-glow;
+    color: $neo-pale;
+    text-shadow: 0 0 6px $neo-glow;
   }
 
   .ogis-nav-control__caption {
-    color: $mx-dim;
+    color: $neo-dim;
   }
 
   // Locate tips
   .ogis-locate-hint {
     background: rgba(0, 0, 0, 0.9);
-    color: $mx-bright;
-    border: 1px solid $mx-bright;
+    color: $neo-bright;
+    border: 1px solid $neo-bright;
     border-radius: 2px;
     box-shadow: 0 0 16px rgba(0, 255, 65, 0.45);
-    font-family: $mx-font;
+    font-family: $neo-font;
   }
 
   .ogis-map-status {
     background: rgba(0, 0, 0, 0.9);
-    color: $mx-bright;
-    border: 1px solid $mx-bright;
+    color: $neo-bright;
+    border: 1px solid $neo-bright;
     border-radius: 2px;
   }
 }
 
-// Rain is shown only in the Matrix look; keep the canvas out of layout
+// Rain is shown only in the Neo theme; keep the canvas out of layout
 // everywhere else in case it is ever mounted.
-:root:not([data-ogis-look="matrix"]) .ogis-matrix-rain {
+:root:not([data-ogis-theme="neo"]) .ogis-neo-rain {
   display: none;
 }

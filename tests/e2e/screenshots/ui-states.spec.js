@@ -1560,3 +1560,50 @@ test.describe("Secondary UI states — desktop landscape", () => {
     await capture(page, FEATURE_DIR, "locate-error");
   });
 });
+
+// ─── Neo theme showcase — two captures, desktop landscape ───────────────────
+// Per the Themeability discussion (OpenGIS discussion #5), a theme gets two
+// screenshots: the initial map view and the Info panel open. Neo is always on
+// in this showcase, so these land in screenshots/themes/neo/. Reduced motion
+// keeps its falling code on a still frame, which the seeded Math.random makes
+// repeatable.
+
+const THEMES = ["neo"];
+
+for (const theme of THEMES) {
+  test.describe(`Theme ${theme} — desktop landscape`, () => {
+    test.use({ viewport: { width: 1280, height: 720 } });
+
+    test(`captures theme ${theme} @screenshots`, async ({ page }, testInfo) => {
+      const dir = `${OUT_ROOT}/themes/${theme}`;
+      mkdirSync(dir, { recursive: true });
+
+      trackConsoleErrors(page);
+      // The project pins reducedMotion in its context options, so emulate it
+      // on the page instead.
+      await page.emulateMedia({ reducedMotion: "reduce" });
+      await seedDeterministicRandom(page);
+      await page.goto(`/${BASE_HASH}`);
+      await stabilizeCaptureRendering(page);
+      await waitForMapIdle(page, testInfo);
+      await expect(page.locator("html")).toHaveAttribute(
+        "data-ogis-theme",
+        theme,
+      );
+
+      // closed — the initial map view, no panel.
+      await closePanel(page);
+      await normaliseCaptureState(page, testInfo);
+      await capture(page, dir, "closed");
+
+      // info-open — the Info pane over the map.
+      await waitForLayoutSettled(page, testInfo);
+      await page.locator("#attribution-button").click();
+      await expect(page.locator(".ogis-info-panel")).toBeVisible();
+      await normaliseCaptureState(page, testInfo);
+      await capture(page, dir, "info-open");
+
+      expectNoConsoleErrors(page);
+    });
+  });
+}

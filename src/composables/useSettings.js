@@ -17,8 +17,7 @@ if (darkQuery) {
   });
 }
 
-// An app look (see stores/lookStore.js) can pin the theme while it is on: the
-// Matrix look is always dark. null means "follow the system".
+// The Neo theme (see App.vue) pins the theme: it is always dark. null means "follow the system".
 const forcedTheme = ref(null);
 
 /**

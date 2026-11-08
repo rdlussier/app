@@ -20,7 +20,7 @@
 //       f  Share URL textarea
 //       g  Layout and structural styles
 //       h  Attribution chip, disclosures & scale offset
-// #7  Optional looks (Matrix), see looks/
+// #7  Neo theme (always on), see themes/
 // ============================================================
 
 // ── #1  Bootstrap functions ───────────────────────────────────
@@ -634,19 +634,6 @@ $font-size-base: 0.9375rem; // 15 px
 .ogis-map3d-card__icon {
   flex: none;
   color: var(--bs-primary);
-}
-
-// Look card in the Info panel: two even buttons, Normal and Matrix.
-.ogis-look-card__title {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.ogis-look-card__options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.35rem;
 }
 
 .ogis-info-panel .ogis-cta {
@@ -1740,8 +1727,8 @@ $font-size-base: 0.9375rem; // 15 px
   color: rgba(255, 255, 255, 0.7);
 }
 
-// #7  Optional looks
+// #7  Neo theme
 // ─────────────────────────────────────────────────────────────
-// Each look lives in its own partial, scoped to <html data-ogis-look="…">.
+// Scoped to <html data-ogis-theme="neo">, set in index.html.
 
-@import "looks/matrix";
+@import "themes/neo";

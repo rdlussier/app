@@ -33,7 +33,6 @@ const DEFAULT_LOCALE = "en";
  */
 const UNTRANSLATED_ALLOWLIST = {
   "nav.menu": ["fr"],
-  "panel.view.look.matrix": ["fr"],
   "menu.collections": ["fr"],
   "panel.about.openSource": ["fr"],
   "panel.account.resourcesCollections": ["fr"],

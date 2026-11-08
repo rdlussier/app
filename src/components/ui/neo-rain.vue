@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
-// Falling green characters behind the side panel content, for the Matrix look.
+// Falling green characters behind the side panel content, for the Neo theme.
 // Purely decorative: it sits under the panel content, ignores the pointer and
 // is hidden from assistive technology. It only animates while the panel is
 // open and the page is visible, at a gentle frame rate, and shows a still
@@ -129,5 +129,5 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" class="ogis-matrix-rain" aria-hidden="true"></canvas>
+  <canvas ref="canvas" class="ogis-neo-rain" aria-hidden="true"></canvas>
 </template>

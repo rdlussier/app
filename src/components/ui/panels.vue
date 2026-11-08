@@ -15,12 +15,10 @@ import { getMapInstance } from "@/composables/useMap";
 import { useSwipeToClose } from "@/composables/useSwipeToClose";
 import IconButton from "@/components/ui/icon-button.vue";
 import InfoPanel from "@/components/panels/info.vue";
-import MatrixRain from "@/components/ui/matrix-rain.vue";
-import { useLook } from "@/stores/lookStore";
+import NeoRain from "@/components/ui/neo-rain.vue";
 
 const instanceId = inject("ogisAppId", "app");
 const { t } = useLocale(instanceId);
-const { isMatrix } = useLook(instanceId);
 const buttonsRef = inject("navigatorButtons", shallowRef([]));
 const panelsRef = inject("navigatorPanels", shallowRef([]));
 
@@ -170,8 +168,8 @@ watch(
     role="region"
     aria-labelledby="ogis-panel-label"
   >
-    <!-- Matrix look: falling characters behind the panel content -->
-    <MatrixRain v-if="isMatrix" :running="isPanelVisible" />
+    <!-- Neo theme: falling characters behind the panel content -->
+    <NeoRain :running="isPanelVisible" />
     <div class="offcanvas-body p-0 d-flex flex-column">
       <span id="ogis-panel-label" class="visually-hidden">{{
         t("nav.menu")
