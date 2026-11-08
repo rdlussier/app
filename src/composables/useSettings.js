@@ -17,9 +17,23 @@ if (darkQuery) {
   });
 }
 
+// An app look (see stores/lookStore.js) can pin the theme while it is on: the
+// Matrix look is always dark. null means "follow the system".
+const forcedTheme = ref(null);
+
+/**
+ * Pin the resolved theme to "light" or "dark", or pass null to follow the
+ * system preference again.
+ *
+ * @param {"light"|"dark"|null} theme
+ */
+export const setForcedTheme = (theme) => {
+  forcedTheme.value = theme === "light" || theme === "dark" ? theme : null;
+};
+
 // The single source of truth for the resolved theme ("light" | "dark").
-export const resolvedTheme = computed(() =>
-  systemDark.value ? "dark" : "light",
+export const resolvedTheme = computed(
+  () => forcedTheme.value ?? (systemDark.value ? "dark" : "light"),
 );
 
 // Notify subscribers (e.g. future MapLibre style swap) whenever the system theme changes.
