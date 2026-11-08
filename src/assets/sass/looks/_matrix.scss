@@ -48,6 +48,11 @@ $mx-font:
     font-family: $mx-font;
   }
 
+  ::selection {
+    background: $mx-bright;
+    color: #001a00;
+  }
+
   // ── Side panel ──────────────────────────────────────────────
 
   .offcanvas.ogis-panel {
@@ -64,6 +69,10 @@ $mx-font:
     --bs-link-hover-color-rgb: 214, 255, 220;
     color: $mx-bright;
     font-family: $mx-font;
+    // Nearly opaque here, so the blur adds GPU work (costly on iPhones)
+    // without changing what you see.
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-right: 1px solid $mx-dim !important;
     box-shadow:
       0 0 24px rgba(0, 255, 65, 0.3),
@@ -112,10 +121,6 @@ $mx-font:
     color: $mx-dim;
   }
 
-  .panel-nav .icon-btn__label {
-    letter-spacing: 0.1em;
-  }
-
   .panel-nav .icon-btn[aria-pressed="true"] {
     color: $mx-bright;
     text-shadow: 0 0 8px $mx-bright;
@@ -130,21 +135,24 @@ $mx-font:
       0 0 6px $mx-bright,
       0 0 18px rgba(0, 255, 65, 0.45);
 
+    // The "/ ''" alt text keeps screen readers (VoiceOver) from reading the
+    // decoration out loud; browsers without it keep the first declaration.
     &::before {
       content: "> ";
+      content: "> " / "";
       color: $mx-mid;
     }
 
     &::after {
       content: "_";
+      content: "_" / "";
       margin-left: 0.1em;
     }
   }
 
   .ogis-section-heading,
   .ogis-map3d-card__title,
-  .ogis-look-card__title,
-  .ogis-zoom-row__title {
+  .ogis-look-card__title {
     color: $mx-pale;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -201,6 +209,7 @@ $mx-font:
   // English only: a terminal-style prefix on route distances.
   &[lang^="en"] .ogis-routes-list .ogis-track-card__meta::before {
     content: "DIST// ";
+    content: "DIST// " / "";
   }
 
   // The colour dot keeps each route's own colour so it matches its line on
@@ -302,6 +311,29 @@ $mx-font:
 
   .badge {
     border-radius: 2px;
+  }
+
+  // Monospace is wider than the normal font, so the Offline Maps zoom row
+  // puts its From / To fields on a second line, below the title, instead
+  // of pushing them past the panel edge on phones.
+  .ogis-zoom-row {
+    flex-wrap: wrap;
+  }
+
+  .ogis-zoom-row__title {
+    flex-basis: 100%;
+    color: $mx-pale;
+  }
+
+  // Small phones (iPhone SE and similar): drop the extra letter spacing so
+  // button labels such as "Guidez-moi" stay on one line.
+  @media (max-width: 359.98px) {
+    .ogis-cta,
+    .ogis-track-btn,
+    .ogis-share-menu > summary,
+    .ogis-modal .btn {
+      letter-spacing: 0;
+    }
   }
 
   // Info panel
