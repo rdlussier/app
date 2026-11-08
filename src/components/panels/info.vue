@@ -7,11 +7,17 @@ import { useActions } from "@/composables/useActions";
 import { formatUrlHash } from "@/composables/useUrlHash";
 import { actions } from "@/actions";
 import Icon from "@/components/ui/icon.vue";
+import { useLook } from "@/stores/lookStore";
 
 const { mapView } = useMap();
 const { t } = useLocale();
 const { perform } = useActions();
 const instanceId = inject("ogisAppId", "app");
+const { look, setLook } = useLook(instanceId);
+const lookOptions = computed(() => [
+  { id: "normal", label: t("panel.view.look.normal") },
+  { id: "matrix", label: t("panel.view.look.matrix") },
+]);
 
 // Attribution HTML comes from our trusted style (OpenGIS/outdoors style.json),
 // so rendering it with v-html is safe.
@@ -213,6 +219,37 @@ const onImprove = (e) => {
             <span>{{ g.text }}</span>
           </li>
         </ul>
+      </section>
+    </div>
+
+    <!-- Look: the optional app theme -->
+    <div class="sidebar-section sidebar-section-body px-3 pb-3">
+      <section class="ogis-live-card ogis-look-card" data-card="look">
+        <h6 id="ogis-look-title" class="ogis-look-card__title">
+          {{ t("panel.view.look.title") }}
+        </h6>
+        <div
+          class="ogis-look-card__options"
+          role="group"
+          aria-labelledby="ogis-look-title"
+          aria-describedby="ogis-look-hint"
+        >
+          <button
+            v-for="option in lookOptions"
+            :key="option.id"
+            type="button"
+            class="btn ogis-track-btn"
+            :class="{ 'ogis-track-btn--main': look === option.id }"
+            :aria-pressed="look === option.id ? 'true' : 'false'"
+            :data-look="option.id"
+            @click="setLook(option.id)"
+          >
+            {{ option.label }}
+          </button>
+        </div>
+        <p id="ogis-look-hint" class="ogis-hint mb-0">
+          {{ t("panel.view.look.hint") }}
+        </p>
       </section>
     </div>
 

@@ -15,6 +15,7 @@ import { hydrateNavigation } from "@/resilience/hydrators/navigation.js";
 import { hydrateSync } from "@/resilience/hydrators/sync.js";
 import { hydrateView } from "@/resilience/hydrators/view.js";
 import { hydrateWelcome } from "@/resilience/hydrators/welcome.js";
+import { hydrateLook } from "@/resilience/hydrators/look.js";
 
 const envelope = (data, version = 1) =>
   JSON.stringify({ __ogisState: 1, version, data });
@@ -932,5 +933,22 @@ describe("hydrateWelcome", () => {
   it("rejects a non-object top level", () => {
     expect(() => hydrateWelcome([])).toThrow();
     expect(() => hydrateWelcome(null)).toThrow();
+  });
+});
+
+describe("hydrateLook", () => {
+  it("keeps a known look", () => {
+    expect(hydrateLook({ look: "matrix" })).toEqual({ look: "matrix" });
+    expect(hydrateLook({ look: "normal" })).toEqual({ look: "normal" });
+  });
+
+  it("repairs an unknown look to normal", () => {
+    expect(hydrateLook({ look: "neon" })).toEqual({ look: "normal" });
+    expect(hydrateLook({})).toEqual({ look: "normal" });
+  });
+
+  it("rejects a non-object top level", () => {
+    expect(() => hydrateLook("matrix")).toThrow();
+    expect(() => hydrateLook(null)).toThrow();
   });
 });
