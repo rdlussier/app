@@ -1136,6 +1136,9 @@ test.describe("Feature states — desktop landscape", () => {
 
   test.beforeEach(async ({ page }) => {
     trackConsoleErrors(page);
+    // Neo's falling code settles on a still frame under reduced motion, which
+    // keeps the captures repeatable.
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await seedDeterministicRandom(page);
   });
 
