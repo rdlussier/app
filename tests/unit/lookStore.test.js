@@ -49,6 +49,23 @@ describe("useLook", () => {
     expect(document.documentElement.hasAttribute("data-ogis-look")).toBe(false);
   });
 
+  it("turns the browser bar black for Matrix and back for Normal", async () => {
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      '<meta name="theme-color" content="#2f6b3a" />',
+    );
+    const meta = () => document.querySelector('meta[name="theme-color"]');
+    const { useLook } = await load();
+    const { setLook } = useLook("app");
+    setLook("matrix");
+    await nextTick();
+    expect(meta().getAttribute("content")).toBe("#000000");
+    setLook("normal");
+    await nextTick();
+    expect(meta().getAttribute("content")).toBe("#2f6b3a");
+    meta().remove();
+  });
+
   it("restores a remembered look", async () => {
     localStorage.setItem(KEY, envelope({ look: "matrix" }));
     const { useLook } = await load();

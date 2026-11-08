@@ -5,6 +5,19 @@ import { setForcedTheme } from "@/composables/useSettings";
 
 const cache = new Map();
 
+// The browser bar (Android Chrome, iOS Safari) takes its colour from
+// <meta name="theme-color">. The Matrix look is black, so the bar follows it
+// and goes back to the page's own colour for Normal.
+const MATRIX_BAR = "#000000";
+let normalBar = null;
+
+const syncBarColour = (look) => {
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) return;
+  if (normalBar === null) normalBar = meta.getAttribute("content") ?? "";
+  meta.setAttribute("content", look === "matrix" ? MATRIX_BAR : normalBar);
+};
+
 /**
  * The app's optional look (theme) for one instance: "normal" or "matrix".
  *
@@ -42,6 +55,7 @@ export function useLook(instanceId) {
           if (value === "normal") root.removeAttribute("data-ogis-look");
           else root.setAttribute("data-ogis-look", value);
           setForcedTheme(value === "matrix" ? "dark" : null);
+          syncBarColour(value);
         },
         { immediate: true },
       );
