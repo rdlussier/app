@@ -1,19 +1,15 @@
 {
   "app.description": "ogis.app — une application de navigation pour le monde réel.",
-
   "common.close": "Fermer",
   "common.cancel": "Annuler",
   "common.delete": "Supprimer",
-
   "map.status.unavailable": "Carte indisponible. Vérifiez votre connexion et réessayez.",
   "map.status.unsupported": "Votre navigateur ne peut pas afficher la carte.",
   "map.status.init": "La carte n'a pas pu démarrer. Réessayez.",
   "map.status.style": "La carte n'a pas pu se charger. Vérifiez votre connexion et réessayez.",
   "map.status.contextLost": "L'affichage de la carte a été interrompu. Réessayez.",
   "map.status.retry": "Réessayer",
-
   "nav.menu": "Menu",
-
   "menu.info": "Infos",
   "menu.account": "Compte",
   "menu.maps": "Cartes",
@@ -21,7 +17,6 @@
   "menu.recordings": "Enregistrements",
   "menu.offline": "Cartes hors ligne",
   "menu.routes": "Itinéraires",
-
   "panel.view.map3d.title": "Cette carte est en 3D",
   "panel.view.map3d.zoom": "Pincez pour zoomer et dézoomer.",
   "panel.view.map3d.rotate": "Tournez deux doigts pour pivoter la carte.",
@@ -29,9 +24,12 @@
   "panel.view.map3d.zoomMouse": "Utilisez la molette de la souris pour zoomer et dézoomer.",
   "panel.view.map3d.rotateMouse": "Clic droit et glisser sur le côté pour pivoter la carte.",
   "panel.view.map3d.tiltMouse": "Clic droit et glisser vers le haut ou le bas pour incliner la vue et voir le relief.",
+  "panel.view.look.title": "Apparence",
+  "panel.view.look.normal": "Normale",
+  "panel.view.look.matrix": "Matrix",
+  "panel.view.look.hint": "Matrix rend les panneaux noirs et verts, avec du code qui tombe. La carte reste telle quelle.",
   "panel.about.freePrivate": "Libre, privé &",
   "panel.about.openSource": "Open Source",
-
   "panel.privacy.title": "Confidentialité",
   "panel.privacy.summary": "Vos données restent sur votre appareil. Aucune analyse d'audience, aucun pistage.",
   "panel.privacy.details": "Détails",
@@ -39,7 +37,6 @@
   "panel.privacy.onDeviceBody": "Les enregistrements, les itinéraires et les réglages sont stockés dans votre navigateur, sur cet appareil — y compris votre dernière position connue, si vous accordez l'autorisation. Rien de ce que vous enregistrez n'est envoyé.",
   "panel.privacy.thirdParty": "Sources de données tierces",
   "panel.privacy.thirdPartyBody": "La carte est assemblée à partir de sources publiques — OpenFreeMap, Mapterhorn, Esri et ogis.app — toutes chargées en HTTPS. Comme pour toute requête web, ces serveurs voient votre adresse IP, et la zone que vous affichez peut être déduite des tuiles demandées.",
-
   "panel.account.title": "Compte",
   "panel.account.description": "Connectez-vous avec un lien magique pour relier cette application à votre compte ogis.app.",
   "panel.account.loading": "Vérification de votre session…",
@@ -72,7 +69,6 @@
   "panel.account.errorRequestFailed": "Impossible de demander le lien magique.",
   "panel.account.magicLinkSent": "Lien magique envoyé ! Consultez votre boîte e-mail.",
   "panel.account.retryAfterHint": "Attendez un instant puis réessayez.",
-
   "panel.maps.title": "Cartes",
   "panel.maps.description": "Parcourez vos cartes et affichez leur GeoJSON sur la carte actuelle.",
   "panel.maps.loadingSession": "Vérification de votre session…",
@@ -116,7 +112,6 @@
   "panel.maps.deleteAction": "Supprimer la carte",
   "panel.maps.deleting": "Suppression…",
   "panel.maps.deleteSaved": "Carte supprimée.",
-
   "panel.collections.title": "Collections",
   "panel.collections.description": "Gérez vos collections et leur hiérarchie.",
   "panel.collections.loadingSession": "Vérification de votre session…",
@@ -160,7 +155,6 @@
   "panel.collections.errorSave": "Impossible d'enregistrer les détails de la collection pour le moment.",
   "panel.collections.errorDelete": "Impossible de supprimer cette collection pour le moment.",
   "panel.collections.errorNotFound": "Collection introuvable ou non accessible.",
-
   "panel.recordings.currentRecording": "Enregistrement en cours",
   "panel.recordings.locationDenied": "L'accès à la localisation a été refusé. Enregistrement en pause.",
   "panel.recordings.locationUnavailable": "La localisation est indisponible. Enregistrement en pause.",
@@ -182,7 +176,6 @@
   "panel.recordings.delete": "Supprimer",
   "panel.recordings.confirmDelete": "Supprimer l'enregistrement du {date} ?",
   "panel.recordings.exportName": "Enregistrement {date}",
-
   "panel.offline.selectFirst": "Sélectionnez d'abord une région.",
   "panel.offline.zoomOrder": "Le zoom minimal ne doit pas dépasser le zoom maximal.",
   "panel.offline.confirmLarge": "Cette région est grande ({size}). Le téléchargement peut prendre un moment. Continuer ?",
@@ -226,7 +219,6 @@
   "panel.offline.tiles_one": "tuile",
   "panel.offline.tiles_other": "tuiles",
   "panel.offline.errorMapNotReady": "La carte n'est pas prête",
-
   "panel.routes.defaultName": "Itinéraire",
   "panel.routes.add": "Ajouter un fichier",
   "panel.routes.addLabel": "Ajouter un itinéraire depuis un fichier",
@@ -255,7 +247,6 @@
   "panel.routes.errorTooLarge": "Fichier trop volumineux",
   "panel.routes.errorNoRoutes": "Aucun itinéraire trouvé dans le fichier",
   "panel.routes.errorImport": "Impossible d'importer le fichier.",
-
   "panel.view.share": "Partager",
   "panel.view.copied": "Copié !",
   "panel.view.improve": "Améliorer",
@@ -263,7 +254,6 @@
   "panel.view.shareHint": "Envoyez un lien qui ouvre la carte exactement comme vous la voyez maintenant.",
   "panel.view.improveHint": "Une erreur ? Signalez-la à OpenStreetMap.",
   "panel.view.randomHint": "Allez à un endroit au hasard dans le monde.",
-
   "locate.button.locate": "Localiser",
   "locate.button.located": "Localisé",
   "locate.button.following": "Suivi",
@@ -279,7 +269,6 @@
   "locate.hint.tilt.rotateMouse": "Clic droit et glisser sur le côté pour pivoter la carte.",
   "locate.hint.tilt.tiltMouse": "Clic droit et glisser vers le haut ou le bas pour incliner la vue et voir le relief.",
   "locate.hint.dismiss": "Fermer l'astuce",
-
   "modal.locate.permissionTitle": "Confiance",
   "modal.locate.permissionBody": "Une autorisation est nécessaire pour accéder à votre position actuelle et au cap de la boussole. Votre position est utilisée uniquement sur cet appareil. Lorsque vous y êtes invité, veuillez autoriser les deux.",
   "modal.locate.cancel": "Annuler",
